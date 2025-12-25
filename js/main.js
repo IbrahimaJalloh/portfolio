@@ -118,16 +118,66 @@ const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.getElementById("nav-menu");
 
 if (nav && navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-        nav.classList.toggle("open");
-    });
+  // ouvrir/fermer au clic sur ☰
+  navToggle.addEventListener("click", event => {
+    event.stopPropagation(); // ne pas déclencher le "clic dehors"
+    nav.classList.toggle("open");
+  });
 
-    // Fermer le menu quand on clique sur un lien
-    navMenu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-        });
+  // fermer le menu en cliquant sur un lien
+  navMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
     });
+  });
+
+  // fermer le menu quand on clique en dehors de la nav
+  document.addEventListener("click", event => {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove("open");
+    }
+  });
 }
 
+// ==================== SOUS-MENUS (Services / Projets / Compétences) ====================
+const submenuButtons = document.querySelectorAll(
+  '.nav-item.has-submenu .nav-link-toggle'
+);
+const submenuItems = document.querySelectorAll('.nav-item.has-submenu');
+
+// Ouverture / fermeture au clic sur le bouton
+submenuButtons.forEach(btn => {
+  btn.addEventListener('click', event => {
+    event.stopPropagation(); // sinon le document.click ferme tout
+
+    const li = btn.parentElement;
+    const isOpen = li.classList.contains('open');
+
+    // Fermer tous les sous-menus
+    submenuItems.forEach(item => item.classList.remove('open'));
+
+    // Si celui-ci n'était pas ouvert, on l'ouvre
+    if (!isOpen) {
+      li.classList.add('open');
+    }
+  });
+});
+
+// Fermer les sous-menus quand on clique sur un lien de nav (desktop + mobile)
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    submenuItems.forEach(item => item.classList.remove('open'));
+  });
+});
+
+// Fermer les sous-menus quand on clique ailleurs (page ou barre hors boutons)
+document.addEventListener('click', event => {
+  const clickedToggle = event.target.closest('.nav-link-toggle');
+  const clickedInsideNav = nav && nav.contains(event.target);
+
+  // clic en dehors de la nav OU dans la nav mais pas sur un bouton de sous-menu
+  if (!clickedInsideNav || !clickedToggle) {
+    submenuItems.forEach(item => item.classList.remove('open'));
+  }
+});
 

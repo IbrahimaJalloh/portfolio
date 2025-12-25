@@ -74,16 +74,24 @@ nav ul {
     gap: 2rem;
 }
 
-nav ul li a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;      /* MENU EN GRAS */
-    transition: var(--transition);
+/* Style commun pour TOUS les items de menu */
+nav ul li a,
+.nav-link-toggle {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
-nav ul li a:hover {
-    color: var(--text-secondary);
+/* Survol : même couleur pour tous */
+nav ul li a:hover,
+.nav-link-toggle:hover {
+  color: var(--text-secondary);
+}
+
+/* hover sur les liens DANS les sous-menus */
+.nav-mega a:hover {
+  color: var(--text);
 }
 
 /* Bouton burger caché sur desktop */
@@ -1008,11 +1016,6 @@ footer {
         gap: 0.75rem;
     }
 
-    nav ul li a {
-        font-size: 0.95rem;
-        font-weight: 600;
-    }
-
     /* Quand la nav a la classe .open, on montre le menu */
     nav.open ul {
         display: flex;
@@ -1044,4 +1047,103 @@ footer {
     }
 }
 
+/* Items de nav avec sous-menu */
+.nav-item {
+  position: relative;
+}
+
+/* Bouton texte + flèche */
+.nav-link-toggle {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Flèche desktop : vers le bas */
+.nav-arrow {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid var(--text);
+  transition: transform 0.2s ease;
+}
+
+/* Mega-menu desktop */
+.nav-mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 1.25rem 1.5rem;
+  background: #0b0720;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+  min-width: 420px;
+  display: none;
+  z-index: 20;
+}
+
+.nav-mega-column a {
+  display: block;
+  padding: 0.4rem 0;
+  color: var(--text-secondary);
+}
+
+/* Ouvert */
+.nav-item.open > .nav-mega {
+  display: flex;
+}
+
+.nav-item.open > .nav-link-toggle .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* --- Mobile + tablette : flèche droite, sous-menu en colonne --- */
+@media (max-width: 1024px) {
+  .nav-list {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link-toggle {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+  }
+
+  /* Flèche vers la droite */
+  .nav-arrow {
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid var(--text);
+    border-right: 0;
+  }
+
+  .nav-item.open > .nav-link-toggle .nav-arrow {
+    transform: rotate(90deg); /* droite -> bas */
+  }
+
+  /* Sous-menu qui se déplie dans la liste */
+  .nav-mega {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    padding: 0.4rem 0 0.8rem;
+    min-width: 0;
+    display: none;
+  }
+
+  .nav-item.open > .nav-mega {
+    display: block;
+  }
+}
 

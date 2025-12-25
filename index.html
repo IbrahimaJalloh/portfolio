@@ -11,26 +11,93 @@
     <!-- ==================== NAVBAR ==================== -->
     <nav>
       <div class="container">
-          <div class="logo">
-            <div class="logo-icon"></div>
-            <span>Ibrahima<strong class="logo-accent">AI</strong></span>
-          </div>
-        <!-- BOUTON BURGER (visible sur mobile) -->
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <span>Ibrahima<strong class="logo-accent">AI</strong></span>
+        </div>
+
+        <!-- Bouton burger -->
         <button class="nav-toggle" aria-label="Ouvrir le menu">
           ☰
         </button>
 
-        <!-- MENU PRINCIPAL -->
-        <ul id="nav-menu">
+        <!-- MENU PRINCIPAL AVEC SOUS-MENUS -->
+        <ul id="nav-menu" class="nav-list">
           <li><a href="#hero">Hero</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projets</a></li>
-          <li><a href="#skills">Compétences</a></li>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="nav-item has-submenu">
+            <button class="nav-link-toggle" type="button">
+              Services
+              <span class="nav-arrow"></span>
+            </button>
+            <div class="nav-mega">
+              <div class="nav-mega-column">
+                <a href="#services">
+                  <h4>Chatbot IA</h4>
+                  <p>Assistants IA pour support client.</p>
+                </a>
+                <a href="#services">
+                  <h4>Automatisation</h4>
+                  <p>Workflows n8n & intégrations.</p>
+                </a>
+                <a href="#services">
+                  <h4>Applications web</h4>
+                  <p>Outils internes & SaaS.</p>
+                </a>
+              </div>
+              <div class="nav-mega-side">
+                <!-- optionnel : image / bloc résumé -->
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item has-submenu">
+            <button class="nav-link-toggle" type="button">
+              Projets
+              <span class="nav-arrow"></span>
+            </button>
+            <div class="nav-mega">
+              <div class="nav-mega-column">
+                <a href="#projects">
+                  <h4>Études de cas</h4>
+                  <p>Projets IA, automation, web.</p>
+                </a>
+                <a href="#projects">
+                  <h4>Résultats chiffrés</h4>
+                  <p>ROI, temps gagné, économies.</p>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item has-submenu">
+            <button class="nav-link-toggle" type="button">
+              Compétences
+              <span class="nav-arrow"></span>
+            </button>
+            <div class="nav-mega">
+              <div class="nav-mega-column">
+                <a href="#skills">
+                  <h4>IA & LLMs</h4>
+                  <p>RAG, embeddings, fine-tuning.</p>
+                </a>
+                <a href="#skills">
+                  <h4>Automatisation</h4>
+                  <p>n8n, APIs, webhooks.</p>
+                </a>
+                <a href="#skills">
+                  <h4>Full‑stack</h4>
+                  <p>React, Next.js, Node…</p>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <!-- Liens simples comme avant -->
+          <li class="nav-item"><a href="#about">À propos</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
         </ul>
 
-        <!-- Barre de recherche -->
+        <!-- Barre de recherche inchangée -->
         <div class="nav-search">
           <span>🔍</span>
           <input
@@ -41,6 +108,7 @@
         </div>
       </div>
     </nav>
+
 
     <!-- ==================== HERO SECTION ==================== -->
     <section class="hero" id="hero">
