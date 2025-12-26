@@ -15,10 +15,10 @@ function handleFormSubmit(event) {
     event.target.reset();
 }
 
-const form = document.getElementById("contact-form");
-if (form) {
-    form.addEventListener("submit", handleFormSubmit);
-}
+// const form = document.getElementById("contact-form");
+// if (form) {
+//    form.addEventListener("submit", handleFormSubmit);
+//}
 
 // Scroll animations
 const observerOptions = {
