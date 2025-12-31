@@ -1,0 +1,9 @@
+﻿# Secrets CRITIQUES
+.env*
+client.py
+server/.env
+agents/client.py
+
+# Python/Node/n8n
+__pycache__/ venv/ node_modules/ .n8n/ credentials/
+dist/ build/ logs/
